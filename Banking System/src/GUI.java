@@ -63,12 +63,12 @@ public class GUI{
 	}
 
 	public static void main(String[] args) throws ClassNotFoundException, IOException {
-		new GUI();
-		/*Password pw = new Password();
+		Password pw = new Password();
 		String filename = "Test.txt";
 		FileOutputStream fos = new FileOutputStream(filename);
 		ObjectOutputStream oos = new ObjectOutputStream(fos);
 		oos.writeObject(pw);
-		oos.close();*/
+		oos.close();
+		new GUI();
 	}
 }
