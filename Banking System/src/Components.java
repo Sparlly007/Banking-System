@@ -819,22 +819,4 @@ public class Components {
 		f.add(panel);
 		panel.setVisible(true);
 	}
-	
-	public static void serializeDataOut(Password pw)throws IOException {
-		String filename = "Test.txt";
-		FileOutputStream fos = new FileOutputStream(filename);
-		ObjectOutputStream oos = new ObjectOutputStream(fos);
-		oos.writeObject(pw);
-		oos.close();
-	}
-	
-	public static Password serializeDataIn() throws ClassNotFoundException, IOException{
-		   String fileName= "Test.txt";
-		   FileInputStream fin = new FileInputStream(fileName);
-		   ObjectInputStream ois = new ObjectInputStream(fin);
-		   Password pw= (Password) ois.readObject();
-		   ois.close();
-		   fin.close();
-		   return pw;
-		}
 }
