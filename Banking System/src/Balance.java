@@ -13,10 +13,14 @@ public class Balance implements Serializable{
 	}
 	
 	public void withdrawFromChecking(float withdraw) {
+		if(checkingBalance - withdraw < 0)
+			checkingBalance = 0;
 		checkingBalance -= withdraw;
 	}
 	
 	public void withdrawFromSavings(float withdraw) {
+		if(savingsBalance - withdraw < 0)
+			savingsBalance = 0;
 		savingsBalance -= withdraw;
 	}
 	

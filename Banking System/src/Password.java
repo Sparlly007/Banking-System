@@ -5,44 +5,36 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.sql.DriverManager;
 import java.util.HashMap;
 import java.util.Map;
+import java.sql.*;
 
 public class Password implements Serializable{
-	private Map<String, User> security = new HashMap<String, User>();
+	private String pw = "";
 	
-	public void add(String password, User user) {
-		security.put(password, user);
-		
-		if(security.containsKey(password))
-			security.replace(password, user);
+	public void putPW(String password){
+		this.pw = password; 
 	}
-	
-	public User get(String pw) {
-		return security.get(pw);
+
+	public String getPW(){
+		return this.pw;
 	}
-	
-	public boolean contains(String pw) {
-		if(security.containsKey(pw))
-			return true;
-		else
-			return false;
-	}
-	
-	public static void serializeDataOut(Password pw)throws IOException {
-		String filename = "Test.txt";
-		FileOutputStream fos = new FileOutputStream(filename);
-		ObjectOutputStream oos = new ObjectOutputStream(fos);
-		oos.writeObject(pw);
-		oos.close();
-	}
-	
-	public static Password serializeDataIn() throws ClassNotFoundException, IOException{
-		   String fileName= "Test.txt";
-		   FileInputStream fin = new FileInputStream(fileName);
-		   ObjectInputStream ois = new ObjectInputStream(fin);
-		   Password pw= (Password) ois.readObject();
-		   ois.close();
-		   return pw;
+
+	public boolean contains(String pwd) {
+		String password = "";
+		try{
+			Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/banking", "root", "Asdfghjkl;1!");
+			Statement myStmt = myConn.createStatement();
+			ResultSet rs=myStmt.executeQuery("select * from accounts where pw like '" + pwd + "'");
+			while(rs.next())  
+				password = rs.getString("pw");
+		}catch (Exception exc){
+			exc.printStackTrace();
 		}
+		if(password.equals(pwd))
+			return true;
+		return false;
+	}
+	
 }

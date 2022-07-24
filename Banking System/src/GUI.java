@@ -22,6 +22,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
+import java.sql.*;
+
 
 public class GUI{
 	private JFrame frame;
@@ -44,14 +46,14 @@ public class GUI{
 					JOptionPane.YES_NO_OPTION, 
 					JOptionPane.QUESTION_MESSAGE);
 				if (option == JOptionPane.YES_OPTION) {
-					try {
+					/*try {
 					FileOutputStream fos = new FileOutputStream("Test.txt");
 					ObjectOutputStream oos = new ObjectOutputStream(fos);
 					oos.writeObject(comp.pw);
 					oos.close();
 					}catch (Exception ex) {
 			            ex.printStackTrace();
-			        }
+			        }*/
 					System.exit(0);
 				}
 			}
@@ -63,12 +65,12 @@ public class GUI{
 	}
 
 	public static void main(String[] args) throws ClassNotFoundException, IOException {
-		Password pw = new Password();
+		/*Password pw = new Password();
 		String filename = "Test.txt";
 		FileOutputStream fos = new FileOutputStream(filename);
 		ObjectOutputStream oos = new ObjectOutputStream(fos);
 		oos.writeObject(pw);
-		oos.close();
+		oos.close();*/
 		new GUI();
 	}
 }

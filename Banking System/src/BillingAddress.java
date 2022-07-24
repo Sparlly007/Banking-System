@@ -1,47 +1,34 @@
-import java.io.Serializable;
-
-public class BillingAddress implements Serializable{
-	public int houseNumber = 0;
-	public String streetName = "";
+public class BillingAddress {
+	public String address = "";
 	public String town = "";
-	public String state = "";
-	public long phoneNumber = 0;
-	public long sSecurity = 0;
-	
-	public void putHouseNumber(int number) {
-		this.houseNumber = number;
+	public String phoneNumber = "";
+	public String sSecurity = "";
+
+	public void putAddress(String name) {
+		this.address = name;
+	}
+
+	public void putTown(String name) {
+		this.town = name;
 	}
 	
-	public void putStreetName(String name) {
-		this.streetName = name;
+	public String getAddress() {
+		return address + ", " + town;
 	}
 	
-	public void putTownName(String town) {
-		this.town = town;
-	}
-	
-	public void putStateName(String state) {
-		this.state = state;
-	}
-	
-	public String printBillingAddress() {
-		String number = Integer.toString(houseNumber);
-		return number + " " + streetName + ", " + town + ", " + state;
-	}
-	
-	public void putPhoneNumber(long number) {
+	public void putPhone(String number) {
 		this.phoneNumber = number;
 	}
 	
-	public long printPhoneNumber() {
+	public String getPhone() {
 		return phoneNumber;
 	}
-	
-	public void inputSocialSecurity(long number) {
+
+	public void putSS(String number) {
 		sSecurity = number;
 	}
 	
-	public long getSocialSecurity() {
+	public String getSS() {
 		return sSecurity;
 	}
 }

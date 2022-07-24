@@ -3,8 +3,9 @@ import java.io.Serializable;
 public class nameAndBirthDay implements Serializable{
 	public String name = "";
 	public String birthMonth = "";
-	public int birthDate = 0;
-	public int birthYear = 0;
+	public String birthDate = "";
+	public String birthYear = "";
+	public String fullBirth = "";
 	
 	public void inputName(String name) {
 		this.name = name;
@@ -13,22 +14,19 @@ public class nameAndBirthDay implements Serializable{
 	public String getName() {
 		return name;
 	}
-	
-	public void putBirthMonth(String month) {
+
+	public void putBirth(String date){
+		this.fullBirth = date;
+	}
+
+	public void putBirth(String month, String date, String year){
 		this.birthMonth = month;
-	}
-	
-	public void putBirthDate(int date) {
 		this.birthDate = date;
-	}
-	
-	public void putBirthYear(int year) {
 		this.birthYear = year;
+		this.fullBirth = birthMonth + " " + date + ", " + year;
 	}
 	
-	public String printBirthDay() {
-		String date = Integer.toString(birthDate);
-		String year = Integer.toString(birthYear);
-		return birthMonth + " " + date + ", " + year;
+	public String getBirth() {
+		return fullBirth;
 	}
 }
