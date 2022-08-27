@@ -1,18 +1,8 @@
-import java.io.Serializable;
 import java.util.LinkedList;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.sql.DriverManager;
-import java.util.HashMap;
-import java.util.Map;
 import java.sql.*;
 
-public class User implements Serializable{
+public class User {
 	public int accountNumber = (int) (Math.random() * (999999 - 100000 + 1) + 100000);
 	
 	nameAndBirthDay birth;

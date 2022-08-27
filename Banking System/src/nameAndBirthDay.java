@@ -1,6 +1,4 @@
-import java.io.Serializable;
-
-public class nameAndBirthDay implements Serializable{
+public class nameAndBirthDay {
 	public String name = "";
 	public String birthMonth = "";
 	public String birthDate = "";

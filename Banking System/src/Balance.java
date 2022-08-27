@@ -1,6 +1,4 @@
-import java.io.Serializable;
-
-public class Balance implements Serializable{
+public class Balance{
 	public float savingsBalance = 0;
 	public float checkingBalance = 0;
 	
