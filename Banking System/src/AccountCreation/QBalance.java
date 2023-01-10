@@ -1,3 +1,4 @@
+package AccountCreation;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -6,11 +7,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import AccountEntity.Balance;
+import AccountEntity.User;
+import BankActions.BalancePage;
+import Service.Service;
+
 public class QBalance{
+	Service service;
     ///Decide the starting checking balance that should be at least $150
 	public void qBalance(JFrame f) {
-		//User account = Components.pw.get(Components.currPassword);
-		Components.b = new Balance();
+		service = new Service();
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		
@@ -47,14 +53,12 @@ public class QBalance{
 	        	else {
 	        		empty.setVisible(false);
 	        		
-	        		if(Float.parseFloat(cText.getText()) < 150 || Float.parseFloat(sText.getText()) < 500)
+	        		if(Double.parseDouble(cText.getText()) < 150 || Double.parseDouble(sText.getText()) < 500)
 	        			tSmall.setVisible(true);
 	        		else {
-		        		Components.b.depositToChecking(Float.parseFloat(cText.getText()));
-		        		Components.b.depositToSavings(Float.parseFloat(sText.getText()));
 		        		panel.setVisible(false);
-						Components.account = new User(Components.birth, Components.address, Components.pw, Components.b);
-			   			Components.account.add(Components.account);
+						Components.account.setBalance(new Balance(Double.parseDouble(cText.getText()), Double.parseDouble(sText.getText())));
+			   			service.register(Components.account);
 		        		new BalancePage().balancePage(f);
 		        		f.getContentPane().remove(panel);
 			        	panel.removeAll();
@@ -70,7 +74,7 @@ public class QBalance{
 	        public void actionPerformed(ActionEvent e){
 	        	panel.setVisible(false);
 				AccountCreation create = new AccountCreation();
-	        	create.accountCreation2(f);
+	        	create.accountCreation1(f);
 	        	f.getContentPane().remove(panel);
 	        	panel.removeAll();
 	        	}

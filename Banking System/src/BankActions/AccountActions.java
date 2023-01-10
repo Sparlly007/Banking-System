@@ -1,3 +1,4 @@
+package BankActions;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -6,6 +7,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+
+import AccountCreation.Components;
+
 import java.sql.DriverManager;
 import java.sql.*;
 
@@ -14,7 +18,7 @@ public class AccountActions {
 		try{
 			Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/banking", "root", "Asdfghjkl;1!");
 			Statement myStmt = myConn.createStatement();
-			String sql = "update accounts set checking=" + Components.account.cBalance() + " where pw='" + Components.account.getPW() + "'";
+			String sql = "update accounts set checking=" + Components.account.getCBalance() + " where pw='" + Components.account.getPassword() + "'";
 			myStmt.executeUpdate(sql);
 		}catch (Exception exc){
 			exc.printStackTrace();
@@ -25,7 +29,7 @@ public class AccountActions {
 		try{
 			Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/banking", "root", "Asdfghjkl;1!");
 			Statement myStmt = myConn.createStatement();
-			String sql = "update accounts set savings=" + Components.account.sBalance() + " where pw='" + Components.account.getPW() + "'";
+			String sql = "update accounts set savings=" + Components.account.getSBalance() + " where pw='" + Components.account.getPassword() + "'";
 			myStmt.executeUpdate(sql);
 		}catch (Exception exc){
 			exc.printStackTrace();
@@ -44,17 +48,17 @@ public class AccountActions {
 		name.setBounds(10, 35, 500, 25);
 		panel.add(name);
 		
-		JLabel birthday = new JLabel("Birthday: " + Components.account.getBirth());
-		birthday.setBounds(10, 55, 500, 25);
-		panel.add(birthday);
+		JLabel email = new JLabel("Email: " + Components.account.getEmail());
+		email.setBounds(10, 55, 500, 25);
+		panel.add(email);
 		
-		JLabel address = new JLabel("Billing address: " + Components.account.getAddress());
-		address.setBounds(10, 75, 500, 25);
-		panel.add(address);
+		// JLabel address = new JLabel("Billing address: " + Components.account.getAddress());
+		// address.setBounds(10, 75, 500, 25);
+		// panel.add(address);
 		
-		JLabel pNumber = new JLabel("Phone Number: " + Components.account.getPhone());
-		pNumber.setBounds(10, 95, 500, 25);
-		panel.add(pNumber);
+		// JLabel pNumber = new JLabel("Phone Number: " + Components.account.getPhone());
+		// pNumber.setBounds(10, 95, 500, 25);
+		// panel.add(pNumber);
 		
 		JButton back = new JButton("Back");
 		back.setBounds(10, 115, 80, 25);
@@ -102,10 +106,10 @@ public class AccountActions {
 	        	else {
 	        		empty.setVisible(false);
 	        		
-	        		if(Float.parseFloat(cText.getText()) < 10)
+	        		if(Double.parseDouble(cText.getText()) < 10)
 	        			tSmall.setVisible(true);
 	        		else {
-		        		Components.account.depositToChecking(Float.parseFloat(cText.getText()));
+		        		Components.account.depositToChecking(Double.parseDouble(cText.getText()));
 						changeCBalance();
 		        		panel.setVisible(false);
 		        		new BalancePage().balancePage(f);
@@ -163,10 +167,10 @@ public class AccountActions {
 	        	else {
 	        		empty.setVisible(false);
 	        		
-	        		if(Float.parseFloat(sText.getText()) < 50)
+	        		if(Double.parseDouble(sText.getText()) < 50)
 	        			tSmall.setVisible(true);
 	        		else {
-		        		Components.account.depositToSavings(Float.parseFloat(sText.getText()));
+		        		Components.account.depositToSavings(Double.parseDouble(sText.getText()));
 						changeSBalance();
 		        		panel.setVisible(false);
 		        		new BalancePage().balancePage(f);
@@ -224,10 +228,10 @@ public class AccountActions {
 	        	else {
 	        		empty.setVisible(false);
 	        		
-	        		if(Float.parseFloat(cText.getText()) < 20)
+	        		if(Double.parseDouble(cText.getText()) < 20)
 	        			tSmall.setVisible(true);
 	        		else {
-		        		Components.account.withdrawFromChecking(Float.parseFloat(cText.getText()));
+		        		Components.account.withdrawFromChecking(Double.parseDouble(cText.getText()));
 						changeCBalance();
 		        		panel.setVisible(false);
 		        		new BalancePage().balancePage(f);
@@ -285,10 +289,10 @@ public class AccountActions {
 	        	else {
 	        		empty.setVisible(false);
 	        		
-	        		if(Float.parseFloat(cText.getText()) < 10)
+	        		if(Double.parseDouble(cText.getText()) < 10)
 	        			tSmall.setVisible(true);
 	        		else {
-		        		Components.account.withdrawFromSavings(Float.parseFloat(cText.getText()));
+		        		Components.account.withdrawFromSavings(Double.parseDouble(cText.getText()));
 						changeSBalance();
 		        		panel.setVisible(false);
 		        		new BalancePage().balancePage(f);

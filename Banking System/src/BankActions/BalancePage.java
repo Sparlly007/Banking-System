@@ -1,3 +1,4 @@
+package BankActions;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -5,7 +6,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import AccountCreation.Components;
+
 public class BalancePage {
+
+	//Displays balance page
     public void balancePage(JFrame f) {
 		JPanel balance = new JPanel();
 		balance.setLayout(null);
@@ -13,14 +18,14 @@ public class BalancePage {
 		JLabel cLabel = new JLabel("Checking:");
 		cLabel.setBounds(10, 20, 80, 25);
 		balance.add(cLabel);
-		JLabel cBalance = new JLabel(Float.toString(Components.account.cBalance()));
+		JLabel cBalance = new JLabel(Double.toString(Components.account.getCBalance()));
 		cBalance.setBounds(10, 35, 80, 25);
 		balance.add(cBalance);
 		
 		JLabel sLabel = new JLabel("Savings:");
 		sLabel.setBounds(200, 20, 80, 25);
 		balance.add(sLabel);
-		JLabel sBalance = new JLabel(Float.toString(Components.account.sBalance()));
+		JLabel sBalance = new JLabel(Double.toString(Components.account.getSBalance()));
 		sBalance.setBounds(200, 35, 80, 25);
 		balance.add(sBalance);
 		

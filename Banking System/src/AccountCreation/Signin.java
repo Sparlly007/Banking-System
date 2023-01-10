@@ -1,3 +1,4 @@
+package AccountCreation;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -5,50 +6,24 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import AccountEntity.Balance;
+import AccountEntity.Password;
+import AccountEntity.User;
+import BankActions.BalancePage;
+import Service.Service;
+
 import java.sql.DriverManager;
 import java.sql.*;
 
 
 public class Signin {
-	public static void getAccount(Password pw){
-		nameAndBirthDay nameBirth = new nameAndBirthDay();
-		BillingAddress billing = new BillingAddress();
-		Balance bl = new Balance();
-        String name = "";
-        String birth = "";
-		String address = "";
-		String phone = "";
-		String ss = "";
-		int checking = 0;
-		int savings = 0;
-		try{
-			Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/banking", "root", "Asdfghjkl;1!");
-			Statement myStmt = myConn.createStatement();
-			ResultSet rs=myStmt.executeQuery("select * from accounts where pw like '" + pw.getPW() + "'");
-			while(rs.next()){
-                name = rs.getString("name");
-                birth = rs.getString("birth");
-				address = rs.getString("address");
-				phone = rs.getString("phone");
-				checking = rs.getInt("checking");
-				savings = rs.getInt("savings");
-            }
-		}catch (Exception exc){
-			exc.printStackTrace();
-		}
 
-		nameBirth.inputName(name);
-		nameBirth.putBirth(birth);
-		billing.putAddress(address);
-		billing.putPhone(phone);
-		billing.putSS(ss);
-		bl.checkingBalance = checking;
-		bl.savingsBalance = savings;
-		Components.account = new User(nameBirth, billing, pw, bl);
-	}
+	Service service;
 
-
+	//Creates signin page
     public void signin(JFrame f) {
+		service = new Service();
 		Components.pw = new Password();
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
@@ -81,8 +56,7 @@ public class Signin {
 	          if(!(Components.pw.contains(text.getText())))
 	        	  incorrect.setVisible(true);
 	          else {
-				Components.pw.putPW(text.getText());
-	        	getAccount(Components.pw);
+	        	Components.account = service.getUser(text.getText());
 	        	panel.setVisible(false);
 	        	new BalancePage().balancePage(f);
 	        	f.getContentPane().remove(panel);

@@ -5,11 +5,13 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
+import AccountCreation.Components;
+
 
 public class GUI{
 	private JFrame frame;
 	
-	static Components comp = new Components();
+	Components comp = new Components();
 	
 	public GUI() {
 		frame = new JFrame();
@@ -27,14 +29,6 @@ public class GUI{
 					JOptionPane.YES_NO_OPTION, 
 					JOptionPane.QUESTION_MESSAGE);
 				if (option == JOptionPane.YES_OPTION) {
-					/*try {
-					FileOutputStream fos = new FileOutputStream("Test.txt");
-					ObjectOutputStream oos = new ObjectOutputStream(fos);
-					oos.writeObject(comp.pw);
-					oos.close();
-					}catch (Exception ex) {
-			            ex.printStackTrace();
-			        }*/
 					System.exit(0);
 				}
 			}
@@ -46,12 +40,6 @@ public class GUI{
 	}
 
 	public static void main(String[] args) throws ClassNotFoundException, IOException {
-		/*Password pw = new Password();
-		String filename = "Test.txt";
-		FileOutputStream fos = new FileOutputStream(filename);
-		ObjectOutputStream oos = new ObjectOutputStream(fos);
-		oos.writeObject(pw);
-		oos.close();*/
 		new GUI();
 	}
 }
