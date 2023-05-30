@@ -1,4 +1,4 @@
-# CS-220-Personal-Project
+# Banking-System-Personal-Project
 
 My project will be based on a banking system that can allow their user to quickly set up a bank account online.
 
